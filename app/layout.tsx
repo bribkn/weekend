@@ -11,8 +11,49 @@ import './globals.css'
 const quicksand = Quicksand({ subsets: ['latin'], weight: ['400'], display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'Fin de Semanas Largos',
+  title: 'Fin de Semana Largos',
   description: 'Calculadora de fines de semana largos',
+  metadataBase: new URL('https://weekend.brianbastias.cl'),
+  openGraph: {
+    title: 'Fin de Semana Largos',
+    description: 'Calculadora de fines de semana largos',
+    url: 'https://weekend.brianbastias.cl',
+    siteName: 'Fin de Semana Largos',
+    images: [
+      {
+        url: '/web-app-manifest-512x512.png',
+        width: 512,
+        height: 512,
+        alt: 'Fin de Semana Largos',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fin de Semana Largos',
+    description: 'Calculadora de fines de semana largos',
+    images: [
+      {
+        url: '/web-app-manifest-512x512.png',
+        width: 512,
+        height: 512,
+        alt: 'Fin de Semana Largos',
+      },
+    ],
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', rel: 'shortcut icon' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+  },
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    title: 'Fin de Semana Largos',
+  },
 }
 
 export default function RootLayout({

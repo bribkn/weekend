@@ -2,16 +2,14 @@ import { Holiday } from '@/domain/date'
 import {
   format,
   parseISO,
-  addDays,
-  isWeekend,
   isSaturday,
   isSunday,
   isFriday,
   isMonday,
-  differenceInCalendarDays,
   eachDayOfInterval,
 } from 'date-fns'
 import { es } from 'date-fns/locale'
+import { LongWeekend } from '@/domain/date'
 
 export const formatFechaPalabras = (dateStr: string) => {
   try {
@@ -83,63 +81,4 @@ export function calcularFinesDeSemanaLargos(feriados: Holiday[]): LongWeekend[] 
     }
   }
   return Array.from(unicos.values())
-}
-
-export interface LongWeekend {
-  cantidadDias: number
-  primerDia: Date
-  ultimoDia: Date
-  feriados: Holiday[]
-}
-
-export function calcularFinesDeSemanaLargosConDiasLibres(
-  feriados: Holiday[],
-  diasLibres: number,
-): LongWeekend[] {
-  const year =
-    feriados.length > 0 ? parseISO(feriados[0].date).getFullYear() : new Date().getFullYear()
-  const start = new Date(year, 0, 1)
-  const end = new Date(year, 11, 31)
-  const dias: { date: Date; feriado?: Holiday }[] = []
-  eachDayOfInterval({ start, end }).forEach((d) => {
-    const feriado = feriados.find((f) => f.date === format(d, 'yyyy-MM-dd'))
-    dias.push({ date: d, feriado })
-  })
-
-  const fines: LongWeekend[] = []
-  let i = 0
-  while (i < dias.length) {
-    const d = dias[i]
-    if (isSaturday(d.date)) {
-      let last = i
-      let feriadosIncluidos: Holiday[] = []
-      let diasLibresUsados = 0
-      while (
-        last < dias.length &&
-        (isSunday(dias[last].date) ||
-          isSaturday(dias[last].date) ||
-          dias[last].feriado ||
-          (diasLibresUsados < diasLibres &&
-            (isMonday(dias[last].date) || isFriday(dias[last].date))))
-      ) {
-        if (!dias[last].feriado && (isMonday(dias[last].date) || isFriday(dias[last].date))) {
-          diasLibresUsados++
-        }
-        if (dias[last].feriado) feriadosIncluidos.push(dias[last].feriado as Holiday)
-        last++
-      }
-      if (last - i > 2 && feriadosIncluidos.length > 0) {
-        fines.push({
-          cantidadDias: last - i,
-          primerDia: dias[i].date,
-          ultimoDia: dias[last - 1].date,
-          feriados: feriadosIncluidos,
-        })
-        i = last
-        continue
-      }
-    }
-    i++
-  }
-  return fines
 }
