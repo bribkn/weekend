@@ -11,34 +11,34 @@ import './globals.css'
 const quicksand = Quicksand({ subsets: ['latin'], weight: ['400'], display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'Fin de Semana Largos',
+  title: 'Fines de Semana Largos',
   description: 'Calculadora de fines de semana largos',
   metadataBase: new URL('https://weekend.brianbastias.cl'),
   openGraph: {
-    title: 'Fin de Semana Largos',
+    title: 'Fines de Semana Largos',
     description: 'Calculadora de fines de semana largos',
     url: 'https://weekend.brianbastias.cl',
-    siteName: 'Fin de Semana Largos',
+    siteName: 'Fines de Semana Largos',
     images: [
       {
         url: '/web-app-manifest-512x512.png',
         width: 512,
         height: 512,
-        alt: 'Fin de Semana Largos',
+        alt: 'Fines de Semana Largos',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fin de Semana Largos',
+    title: 'Fines de Semana Largos',
     description: 'Calculadora de fines de semana largos',
     images: [
       {
         url: '/web-app-manifest-512x512.png',
         width: 512,
         height: 512,
-        alt: 'Fin de Semana Largos',
+        alt: 'Fines de Semana Largos',
       },
     ],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   appleWebApp: {
-    title: 'Fin de Semana Largos',
+    title: 'Fines de Semana Largos',
   },
 }
 

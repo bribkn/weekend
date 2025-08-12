@@ -8,6 +8,24 @@ export default function AudioControls() {
   const [volume, setVolume] = useState(1)
   const [isPlaying, setIsPlaying] = useState(false)
   const [showSlider, setShowSlider] = useState(false)
+  const [showToasty, setShowToasty] = useState(false)
+
+  useEffect(() => {
+    if (!isPlaying) return
+    let timeout: NodeJS.Timeout
+    let interval: NodeJS.Timeout
+    const trigger = () => {
+      setShowToasty(true)
+      timeout = setTimeout(() => setShowToasty(false), 2000)
+    }
+    trigger()
+    interval = setInterval(trigger, 10000)
+    return () => {
+      clearTimeout(timeout)
+      clearInterval(interval)
+      setShowToasty(false)
+    }
+  }, [isPlaying])
 
   useEffect(() => {
     if (!audioRef.current) return
@@ -51,6 +69,21 @@ export default function AudioControls() {
       <AnimatePresence>
         {isPlaying && (
           <>
+            <AnimatePresence>
+              {showToasty && (
+                <motion.img
+                  key="toasty-weeknd"
+                  src="/weeknd.png"
+                  alt="Toasty Weeknd"
+                  className="fixed -bottom-5 -right-5 w-32 h-32 z-[10001] pointer-events-none select-none"
+                  initial={{ x: 200, opacity: 0, rotate: -45 }}
+                  animate={{ x: 0, opacity: 1, rotate: -45 }}
+                  exit={{ x: 200, opacity: 0, rotate: -45 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20, duration: 0.5 }}
+                  style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25)' }}
+                />
+              )}
+            </AnimatePresence>
             <motion.div
               className="fixed inset-0 flex items-center justify-center pointer-events-none z-[9999]"
               initial={{ opacity: 0 }}
@@ -191,7 +224,7 @@ export default function AudioControls() {
           </>
         )}
       </AnimatePresence>
-      <div className="fixed bottom-3 md:bottom-3 right-3 md:left-6 flex gap-2 z-50 items-center">
+      <div className="fixed bottom-3 md:bottom-3 left-3 md:left-6 flex gap-2 z-50 items-center">
         <button
           type="button"
           aria-label={isPlaying ? 'Pausar audio' : 'Reproducir audio'}
