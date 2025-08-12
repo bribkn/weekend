@@ -42,7 +42,6 @@ export const TablaFinesDeSemanaLargos = ({
             f.ultimoDia.getTime() === proximo.ultimoDia.getTime()
           return (
             <tr
-              key={i}
               className={
                 'border-b last:border-b-0 align-top' +
                 (esProximo ? ' bg-gray-100 text-black font-semibold rounded-3xl' : '')
