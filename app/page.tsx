@@ -35,7 +35,7 @@ export const TablaFinesDeSemanaLargos = ({
         </tr>
       </thead>
       <tbody>
-        {fines.map((f, i) => {
+        {fines.map((f) => {
           const esProximo =
             proximo &&
             f.primerDia.getTime() === proximo.primerDia.getTime() &&
