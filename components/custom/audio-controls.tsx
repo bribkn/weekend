@@ -13,13 +13,12 @@ export default function AudioControls() {
   useEffect(() => {
     if (!isPlaying) return
     let timeout: NodeJS.Timeout
-    let interval: NodeJS.Timeout
     const trigger = () => {
       setShowToasty(true)
       timeout = setTimeout(() => setShowToasty(false), 2000)
     }
+    const interval: NodeJS.Timeout = setInterval(trigger, 10000)
     trigger()
-    interval = setInterval(trigger, 10000)
     return () => {
       clearTimeout(timeout)
       clearInterval(interval)
