@@ -116,7 +116,6 @@ export function calculateLongWeekendsWithRequestedDays(
       }
     }
   })
-  // Remove duplicates by date range and requested days
   const uniques = new Map()
   for (const r of results) {
     const key = r.firstDay.toISOString() + '_' + r.lastDay.toISOString() + '_' + r.requestedDays.map((d) => d.toISOString()).join(',')
@@ -124,10 +123,15 @@ export function calculateLongWeekendsWithRequestedDays(
       uniques.set(key, r)
     }
   }
-  return Array.from(uniques.values())
+
+  const today = new Date()
+  const filteredResults = Array.from(uniques.values()).filter((r) => {
+    return r.firstDay >= today
+  })
+
+  return filteredResults
 }
 
-// Utility to get all combinations of k elements from an array
 function getCombinations<T>(arr: T[], k: number): T[][] {
   const res: T[][] = []
   function backtrack(start: number, path: T[]) {
