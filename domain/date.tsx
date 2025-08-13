@@ -7,8 +7,8 @@ export interface Holiday {
 }
 
 export interface LongWeekend {
-  cantidadDias: number
-  primerDia: Date
-  ultimoDia: Date
-  feriados: Holiday[]
+  quantity: number
+  firstDay: Date
+  lastDay: Date
+  holidays: Holiday[]
 }

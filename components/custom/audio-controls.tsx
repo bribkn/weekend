@@ -107,12 +107,7 @@ export default function AudioControls() {
                 />
               ))}
             </motion.div>
-            <motion.div
-              className="fixed inset-0 pointer-events-none z-[9999]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+            <motion.div className="fixed inset-0 pointer-events-none z-[9999]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               {[...Array(60)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -175,11 +170,7 @@ export default function AudioControls() {
                   }}
                   style={{ position: 'absolute', top: 0 }}
                 >
-                  {i % 2 === 0 ? (
-                    <PartyPopper className="text-pink-400" />
-                  ) : (
-                    <Sparkles className="text-yellow-300" />
-                  )}
+                  {i % 2 === 0 ? <PartyPopper className="text-pink-400" /> : <Sparkles className="text-yellow-300" />}
                 </motion.div>
               ))}
             </motion.div>
@@ -212,11 +203,7 @@ export default function AudioControls() {
                   }}
                   style={{ position: 'absolute', top: 0 }}
                 >
-                  {i % 2 === 0 ? (
-                    <PartyPopper className="text-pink-400" />
-                  ) : (
-                    <Sparkles className="text-yellow-300" />
-                  )}
+                  {i % 2 === 0 ? <PartyPopper className="text-pink-400" /> : <Sparkles className="text-yellow-300" />}
                 </motion.div>
               ))}
             </motion.div>
@@ -243,15 +230,7 @@ export default function AudioControls() {
           </button>
           {showSlider && (
             <div className="absolute left-12 bottom-2 flex items-center bg-background rounded px-2 py-1 shadow border">
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step={0.01}
-                value={volume}
-                onChange={handleSliderChange}
-                className="w-24 accent-primary"
-              />
+              <input type="range" min={0} max={1} step={0.01} value={volume} onChange={handleSliderChange} className="w-24 accent-primary" />
             </div>
           )}
         </div>
