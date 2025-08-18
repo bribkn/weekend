@@ -50,12 +50,12 @@ export default function Home() {
               <CardTitle>Fines de semana largos</CardTitle>
               <div className="flex items-center gap-2 mt-2">
                 <Switch checked={showPastDays} onCheckedChange={setShowPastDays} aria-label="Mostrar fechas pasadas" />
-                <span className="text-sm text-muted-foreground select-none">Mostrar holidays pasados</span>
+                <span className="text-sm text-muted-foreground select-none">Mostrar feriados pasados</span>
               </div>
             </CardHeader>
             <CardContent>
-              {isLoading && <div className="text-muted-foreground">Cargando holidays...</div>}
-              {error && <div className="text-destructive">Error al cargar holidays</div>}
+              {isLoading && <div className="text-muted-foreground">Cargando feriados...</div>}
+              {error && <div className="text-destructive">Error al cargar feriados</div>}
               <WeekendTable weekends={filteredNormalWeekends} showQuantity={false} today={today} />
             </CardContent>
           </Card>
@@ -102,8 +102,8 @@ export default function Home() {
                   <span className="text-xs">Ordenar por cantidad de días libres</span>
                 </Button>
               </div>
-              {isLoading && <div className="text-muted-foreground">Cargando holidays...</div>}
-              {error && <div className="text-destructive">Error al cargar holidays</div>}
+              {isLoading && <div className="text-muted-foreground">Cargando feriados...</div>}
+              {error && <div className="text-destructive">Error al cargar feriados</div>}
               <WeekendTable weekends={filteredExtendedWeekends} showQuantity={true} today={today} />
             </CardContent>
           </Card>
